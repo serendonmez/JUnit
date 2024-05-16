@@ -1,5 +1,6 @@
 package Day05_jUnitFrameWork;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,69 +9,76 @@ import java.time.Duration;
 
 public class C05_CokluTest {
 
+    @Test
+    public void test02() throws InterruptedException {
 
-@Test
-    public void toTest() throws InterruptedException {
-
+        // ayarlari yapin
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get("https://testotomasyonu.com/");
+        // wisequarter anasayfaya gidin
+        driver.get("https://www.wisequarter.com");
+        // anasayfaya gittiginizi test edin
+        String expectedUrlIcerik = "wisequarter";
+        String actualUrl = driver.getCurrentUrl();
 
-        String expectedURLIcerik="testotomasyonu";
-        String actualUrL= driver.getCurrentUrl();
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Wisequarter testi PASSED");
+        } else System.out.println("Wisequarter testi FAILED");
 
-        if (actualUrL.contains(expectedURLIcerik)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println("failed");
-        }
+        // sayfayi kapatin
+        Thread.sleep(2000);
+        driver.quit();
+    }
 
+
+    //Bir test method'unu gecici olarak kullanim disina almak icin @Disabled kullanilabilir
+    @Test @Disabled
+    public void test01() throws InterruptedException {
+
+        // ayarlari yapin
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        // youtube anasayfaya gidin
+        driver.get("https://www.google.com");
+        // anasayfaya gittiginizi test edin
+        String expectedUrlIcerik = "google";
+        String actualUrl = driver.getCurrentUrl();
+
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("google testi PASSED");
+        } else System.out.println("google testi FAILED");
+        // sayfayi kapatin
         Thread.sleep(2000);
         driver.quit();
 
     }
 
     @Test
-    public void wiseTesti () throws InterruptedException {
+    public void test03() throws InterruptedException {
+
+        // ayarlari yapin
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get("https://wisequarter.com/");
+        // testotomasyonu anasayfaya gidin
+        driver.get("https://www.testotomasyonu.com");
+        // anasayfaya gittiginizi test edin
 
-        String expectedURLIcerik="wise";
-        String actualUrL= driver.getCurrentUrl();
+        String expectedUrlIcerik = "testotomasyonu";
+        String actualUrl = driver.getCurrentUrl();
 
-        if (actualUrL.contains(expectedURLIcerik)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println("failed");
-        }
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Test otomasyonu testi PASSED");
+        } else System.out.println("Test otomasyonu testi FAILED");
+
+        // sayfayi kapatin
         Thread.sleep(2000);
         driver.quit();
     }
 
-    @Test
-    public void youtubeTesti() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://youtube.com/");
-
-        String expectedURLIcerik="youtube";
-        String actualUrL= driver.getCurrentUrl();
-
-        if (actualUrL.contains(expectedURLIcerik)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println("failed");
-        }
-
-
-        Thread.sleep(2000);
-        driver.quit();
-
-    }
 }

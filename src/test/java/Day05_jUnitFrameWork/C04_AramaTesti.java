@@ -12,8 +12,7 @@ import java.util.List;
 
 public class C04_AramaTesti {
     /*
-    Ahmet Bulutluoz
-  20:38 Uhr
+
 // gerekli nayarlamalari yapip
 // 3 farkli test method'u olusturun
 // ve asagidaki testleri farkli test method'larinda calistirin
@@ -22,74 +21,69 @@ public class C04_AramaTesti {
 // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
      */
 
-    @Test
-    public void Test1(){
+    static WebDriver driver;
+    static List<WebElement> bulunanSonucElementleriList;
 
-        WebDriver driver = new ChromeDriver();
+    @Test
+    public void test01() throws InterruptedException {
+
+        // gerekli ayarlamalari yapip
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        // 1- testotomasyonu anasayfaya gidin ve anasayfaya gittiginizi test edin
+        // testotomasyonu anasayfaya gidin
+        driver.get("https://www.testotomasyonu.com");
+        // testotomasyonu sayfasina gittiginizi test edin
 
-        driver.get("https://testotomasyonu.com/");
+        String expectedUrlIcerik = "testotomasyonu";
+        String actualUrl = driver.getCurrentUrl();
 
-        String expectedSF= "Test Otomasyonu";
-        String  ActualSF= driver.getTitle();
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Test otomasyonu testi PASSED");
+        } else System.out.println("Test otomasyonu testi FAILED");
 
-        if (ActualSF.equals(expectedSF)){
-            System.out.println("passed");
-        }else {
-            System.out.println("failed");
-        }
+    }
 
+
+    @Test
+    public void test02(){
+        // 2- phone icin arama yaptirip,
+        System.out.println(driver.getCurrentUrl());
+        WebElement aramaKutusu = driver.findElement(By.xpath("//*[@id='global-search']"));
+        aramaKutusu.sendKeys("phone" + Keys.ENTER);
+
+        //arama sonucunda urun bulunabildigini test edin
+        bulunanSonucElementleriList =
+                driver.findElements(By.xpath("//*[@*='prod-img']"));
+
+        if (bulunanSonucElementleriList.size()>0){
+            System.out.println("phone arama testi PASSED");
+        }else System.out.println("phone arama testi FAILED");
+    }
+
+    @Test
+    public void test03() throws InterruptedException {
+        // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
+
+        bulunanSonucElementleriList.get(0).click();
+
+        WebElement ilkUrunIsimElementi =
+                driver.findElement(By.xpath("//div[@class=' heading-sm mb-4']"));
+
+        String expectedUrunIsimIcerigi = "phone";
+        String actualUrunIsmi = ilkUrunIsimElementi
+                .getText()
+                .toLowerCase();
+
+        if (actualUrunIsmi.contains(expectedUrunIsimIcerigi)){
+            System.out.println("Urun isim testi PASSED");
+        }else System.out.println("Urun isim testi FAILED");
+
+        Thread.sleep(2000);
         driver.quit();
     }
-    @Test
-    public void Test2(){
-
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        driver.get("https://testotomasyonu.com/");
-        WebElement aramaKutusu  =driver.findElement(By.className("global-search"));
-        aramaKutusu.sendKeys("phone"+ Keys.ENTER);
-
-        List<WebElement> bulunanPhoneSayisi= driver.findElements(By.xpath("//*[@*='prod-img']"));
-
-        if (bulunanPhoneSayisi.size()>0){
-            System.out.println("passed");
-        }else{
-            System.out.println("failed");
-        }
-    }
-
-    @Test
-    public void Test3() throws InterruptedException {
-
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        driver.get("https://testotomasyonu.com/");
-
-        WebElement ilkPhone= driver.findElement(By.xpath("//div[@class=' heading-sm mb-4']"));
-        ilkPhone.click();
-
-        Thread.sleep(3000);
-        WebElement phoneName=driver.findElement(By.className("APPLEL iPhone 13 (Starlight, 128 GB)"));
-
-
-       String stringphoneName= phoneName.getText().toLowerCase();
-
-
-       if (stringphoneName.contains("Phone")){
-           System.out.println("passed");
-       }else {
-           System.out.println("failed");
-       }
-
-       driver.quit();
 
 
 
-    }
 }

@@ -8,70 +8,87 @@ import java.time.Duration;
 
 public class C03_JUnitIlkTest {
 
+ /*
+        - @Test notasyonu siradan bir method'u bagimsiz olarak calistirilabilen
+          bir test method'una donusturur
+
+        - JUnit bir class'da birden fazla test method'u oldugunda
+          hangisinin once calistirilacagina kendisi karar verir
+          biz bu konuda bir ongoruye sahip olamayiz
+          ve siralamayi belirleyemeyiz
+          (eger method isimleri test01, test02,test03... gibi yazilirsa, bu siralamaya uyar)
+     */
 
     @Test
-    public void toTest() throws InterruptedException {
+    public void test02() throws InterruptedException {
 
+        // ayarlari yapin
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get("https://testotomasyonu.com/");
+        // wisequarter anasayfaya gidin
+        driver.get("https://www.wisequarter.com");
+        // anasayfaya gittiginizi test edin
+        String expectedUrlIcerik = "wisequarter";
+        String actualUrl = driver.getCurrentUrl();
 
-        String expectedURLIcerik="testotomasyonu";
-        String actualUrL= driver.getCurrentUrl();
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Wisequarter testi PASSED");
+        } else System.out.println("Wisequarter testi FAILED");
 
-        if (actualUrL.contains(expectedURLIcerik)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println("failed");
-        }
+        // sayfayi kapatin
+        Thread.sleep(2000);
+        driver.quit();
+    }
 
+    @Test
+    public void test01() throws InterruptedException {
+
+        // ayarlari yapin
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        // youtube anasayfaya gidin
+        driver.get("https://www.youtube.com");
+        // anasayfaya gittiginizi test edin
+        String expectedUrlIcerik = "youtube";
+        String actualUrl = driver.getCurrentUrl();
+
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Youtube testi PASSED");
+        } else System.out.println("Youtube testi FAILED");
+        // sayfayi kapatin
         Thread.sleep(2000);
         driver.quit();
 
     }
 
     @Test
-    public void wiseTesti () throws InterruptedException {
+    public void test03() throws InterruptedException {
+
+        // ayarlari yapin
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get("https://wisequarter.com/");
+        // testotomasyonu anasayfaya gidin
+        driver.get("https://www.testotomasyonu.com");
+        // anasayfaya gittiginizi test edin
 
-        String expectedURLIcerik="wise";
-        String actualUrL= driver.getCurrentUrl();
+        String expectedUrlIcerik = "testotomasyonu";
+        String actualUrl = driver.getCurrentUrl();
 
-        if (actualUrL.contains(expectedURLIcerik)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println("failed");
-        }
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Test otomasyonu testi PASSED");
+        } else System.out.println("Test otomasyonu testi FAILED");
+
+        // sayfayi kapatin
         Thread.sleep(2000);
         driver.quit();
     }
 
-    @Test
-    public void youtubeTesti() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://youtube.com/");
 
-        String expectedURLIcerik="youtube";
-        String actualUrL= driver.getCurrentUrl();
-
-        if (actualUrL.contains(expectedURLIcerik)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println("failed");
-        }
-
-
-        Thread.sleep(2000);
-        driver.quit();
-
-    }
 
 }

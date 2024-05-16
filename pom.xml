@@ -17,7 +17,15 @@
 yorum satiri
 
 -->
+    <!--
+            pom.xml bir maven projesinin yonetim merkezidir
+            biz maven'dan istedigimiz malzemeleri buraya yazacagiz
+            maven da o malzemeleri bize temin edecek
 
+            ayni sekilde herhangi bir projede pom.xml'e bakarsak
+            projenin hangi tool'lari ve hangi versiyonlarini kullandigini kolayca anlayabiliriz
+
+        -->
 
     <dependencies>
         <!--  projeye ekleyecegimiz kütüphaneleri dependencies taglari arasina ekleyecegiz -->

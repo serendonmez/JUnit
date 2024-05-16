@@ -4,35 +4,33 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
 public class C01_DisardanWebDriverKullanma {
     public static void main(String[] args) throws InterruptedException {
 
-        // TestOtomasyonun ana sf ya git
-        // url in  test otomasyonu
-
-        // özel webdriver kullanmamiiz gerekirse
-
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver= new ChromeDriver();
+        //WebDriverManager.firefoxdriver().setup();
+        WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get("https://testotomasyonu.com/");
+        // testotomasyonu anasayfaya gidin
+        driver.get("https://www.testotomasyonu.com");
 
-        String expectedURL= "https://testotomasyonu.com/";
-        String ActualURL= driver.getCurrentUrl();
-        if (expectedURL.equals(ActualURL)){
-            System.out.println(" test Passed");
-        }else {
-            System.out.println(" test failed");
-        }
+        // url'in testotomasyonu icerdigini test edin
+        String expectedUrlIcerik = "testotomasyonu";
+        String actualUrl = driver.getCurrentUrl();
 
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Url test PASSED");
+        } else System.out.println("Url test FAILED");
+
+        // sayfayi kapatin
         Thread.sleep(2000);
-
         driver.quit();
+
 
     }
 }
