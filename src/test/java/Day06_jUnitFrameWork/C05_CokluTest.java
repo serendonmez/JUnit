@@ -1,4 +1,4 @@
-package Day05_jUnitFrameWork;
+package Day06_jUnitFrameWork;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

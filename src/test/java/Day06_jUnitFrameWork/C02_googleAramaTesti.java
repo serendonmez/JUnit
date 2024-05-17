@@ -1,4 +1,4 @@
-package Day05_jUnitFrameWork;
+package Day06_jUnitFrameWork;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

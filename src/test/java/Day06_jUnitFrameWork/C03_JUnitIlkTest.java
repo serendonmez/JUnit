@@ -1,4 +1,4 @@
-package Day05_jUnitFrameWork;
+package Day06_jUnitFrameWork;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +17,11 @@ public class C03_JUnitIlkTest {
           biz bu konuda bir ongoruye sahip olamayiz
           ve siralamayi belirleyemeyiz
           (eger method isimleri test01, test02,test03... gibi yazilirsa, bu siralamaya uyar)
+
+          ikinci yol olarak class deklarasyonunun üstünde :
+           @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+           her test methodunda ise @Order(1) , kullnarak istedigimiz siralamada calistiriabiliriz.
+
      */
 
     @Test
