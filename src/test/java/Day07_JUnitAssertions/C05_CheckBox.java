@@ -1,26 +1,22 @@
 package Day07_JUnitAssertions;
 
+import Utilities.ReusableMethods;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
 public class C05_CheckBox {
 
-    /*
-    Gerekli yapiyi olusturun ve aşağıdaki görevi tamamlayın
- a. Verilen web sayfasına gidin.
-     https://testotomasyonu.com/form
- b. Sirt Agrisi ve Carpinti checkbox’larini secin
- c. Sirt Agrisi ve Carpinti checkbox’larininin seçili olduğunu test edin
- d. Seker ve Epilepsi checkbox’larininin seçili olmadigini test edin
-     */
+    // Gerekli yapiyi olusturun ve aşağıdaki görevi tamamlayın
 
 
     WebDriver driver;
@@ -37,7 +33,6 @@ public class C05_CheckBox {
         driver.quit();
     }
 
-
     @Test
     public void checkBoxTesti() throws InterruptedException {
         //	a. Verilen web sayfasına gidin.
@@ -47,6 +42,10 @@ public class C05_CheckBox {
         //     secme islemi hem yazidan hem kutudan yapilabildiginden
         //     testin daha efektif olmasi icin
         //     sirt agrisini kutudan, carpintiyi yazidan secelim
+
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(3000);
         WebElement sirtAgrisiKutusu = driver.findElement(By.id("gridCheck5"));
         sirtAgrisiKutusu.click();
 
@@ -62,7 +61,14 @@ public class C05_CheckBox {
         // carpinti checkbox'in secili oldugunu test edin
         Assertions.assertTrue(carpintiKutusu.isSelected());
 
+        // seker ve epilepsi kutulari gorunmediginden
+        // driver objesi bu kutulari test EDEMEYEBILIR
+        // bu durumda page down yapmak gerekir
+        Thread.sleep(3000);
+
+
         //	d. Seker ve Epilepsi checkbox’larininin seçili olmadigini test edin
+
 
         WebElement sekerCheckbox = driver.findElement(By.id("hastalikCheck2"));
         WebElement epilepsiCheckbox = driver.findElement(By.id("hastalikCheck7"));
@@ -76,7 +82,8 @@ public class C05_CheckBox {
 
         Assertions.assertFalse(epilepsiCheckbox.isSelected());
 
-        Thread.sleep(3000);
+
+        ReusableMethods.bekle(3);
     }
 
 
