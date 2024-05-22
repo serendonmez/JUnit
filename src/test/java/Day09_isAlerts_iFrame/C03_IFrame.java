@@ -1,7 +1,8 @@
-package Day09_;
+package Day09_isAlerts_iFrame;
 
 import Utilities.ReusableMethods;
 import Utilities.TestBase;
+import Utilities.TestBase_All;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -9,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class C03_IFrame extends TestBase {
+public class C03_IFrame extends TestBase_All {
 
     /*
     1- https://testotomasyonu.com/discount adresine gidin
