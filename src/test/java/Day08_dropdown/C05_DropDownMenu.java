@@ -11,6 +11,17 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class C05_DropDownMenu extends TestBase {
+
+       /*
+        Dropdown OZEL BIR acilir menudur.
+
+        bir acilir menunun dropdown olup olmadigini anlamak icin
+        asagidaki 2 sarti sagladigini kontol etmeliyiz
+        1- select tag'i ile olusturulmalidir
+        2- secim yapabilecegimiz opsiyonlar option tagi ile olusturulmalidir
+     */
+
+
     /*
     ● https://testotomasyonu.com/form adresine gidin.
 	1.Dogum tarihi gun seçeneğinden index kullanarak 5’i secin
